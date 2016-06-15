@@ -59,7 +59,7 @@
 - (id)od_filterObject:(BOOL (^)(id, NSUInteger, BOOL *))predicate {
     if (!predicate) return nil;
     NSUInteger idx = [self indexOfObjectPassingTest:predicate];
-    return idx == NSNotFound ? nil : [self objectAtIndex:idx];
+    return idx == NSNotFound ? nil : self[idx];
 }
 
 - (NSArray *)od_mapObjects:(id (^)(id, NSUInteger))predicate {
@@ -183,7 +183,7 @@
 
 - (id)od_filterObject:(BOOL (^)(id, id, BOOL *))predicate {
     if (!predicate) return nil;
-    return [self objectForKey:[self keysOfEntriesPassingTest:predicate].anyObject];
+    return self[[self keysOfEntriesPassingTest:predicate].anyObject];
 }
 
 - (NSDictionary *)od_mapObjects:(id (^)(id, id))predicate {

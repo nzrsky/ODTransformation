@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'ODTransformation'
-  s.version      = '1.0.0'
+  s.version      = '1.0.1'
   s.summary      = 'Set of methods for functional transformation Cocoa objects'
   s.homepage     = 'https://github.com/Rogaven/ODTransformation'
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
