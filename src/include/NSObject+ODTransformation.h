@@ -30,6 +30,8 @@
 - (NSArray<ObjectType> *)od_filterObjects:(BOOL (^)(ObjectType obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
 - (ObjectType)od_filterObject:(BOOL (^)(ObjectType obj, NSUInteger idx, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
 
+- (NSArray<ObjectType> *)od_filterValidObjects;
+    
 - (NSArray *)od_mapObjects:(id (^)(ObjectType obj, NSUInteger idx))predicate NS_AVAILABLE(10_6, 4_0);
 
 - (id)od_reduceObjects:(ObjectType (^)(ObjectType value, ObjectType obj, NSUInteger idx))predicate NS_AVAILABLE(10_6, 4_0);
@@ -44,6 +46,7 @@
 
 - (NSArray<ObjectType> *)od_filterObjects:(BOOL (^)(ObjectType obj, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
 - (ObjectType)od_filterObject:(BOOL (^)(ObjectType obj, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSArray<ObjectType> *)od_filterValidObjects;
 
 - (NSSet *)od_mapObjects:(id (^)(ObjectType obj))predicate NS_AVAILABLE(10_6, 4_0);
 
@@ -57,6 +60,7 @@
 
 - (NSArray<ObjectType> *)od_filterObjects:(BOOL (^)(KeyType key, ObjectType obj, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
 - (ObjectType)od_filterObject:(BOOL (^)(KeyType key, ObjectType obj, BOOL *stop))predicate NS_AVAILABLE(10_6, 4_0);
+- (NSArray<ObjectType> *)od_filterValidObjects;
 
 - (NSDictionary *)od_mapObjects:(id (^)(KeyType key, ObjectType obj))predicate NS_AVAILABLE(10_6, 4_0);
 - (NSDictionary *)od_mapKeys:(id (^)(KeyType key, ObjectType obj))predicate NS_AVAILABLE(10_6, 4_0);

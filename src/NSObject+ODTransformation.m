@@ -23,7 +23,7 @@
 
 #import "NSObject+ODTransformation.h"
 
-#define OD_EACH_OBJ(arr) arr enumerateObjectsUsingBlock:^(id _Nonnull obj, BOOL * _Nonnull stop)
+#define OD_EACH_OBJ(arr)    arr enumerateObjectsUsingBlock:^(id _Nonnull obj, BOOL * _Nonnull stop)
 #define OD_EACH_OBJIDX(arr) arr enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
 #define OD_EACH_KEYOBJ(arr) arr enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop)
 
@@ -60,6 +60,12 @@
     if (!predicate) return nil;
     NSUInteger idx = [self indexOfObjectPassingTest:predicate];
     return idx == NSNotFound ? nil : self[idx];
+}
+
+- (NSArray *)od_filterValidObjects {
+    return [self od_filterObjects:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return ![obj isEqual:[NSNull null]];
+    }];
 }
 
 - (NSArray *)od_mapObjects:(id (^)(id, NSUInteger))predicate {
@@ -126,6 +132,12 @@
     return [self objectsPassingTest:predicate].anyObject;
 }
 
+- (NSArray *)od_filterValidObjects {
+    return [self od_filterObjects:^BOOL(id obj, BOOL *stop) {
+        return ![obj isEqual:[NSNull null]];
+    }];
+}
+
 - (NSSet *)od_mapObjects:(id (^)(id obj))predicate {
     if (!predicate || self.count == 0) return [self copy];
 
@@ -184,6 +196,12 @@
 - (id)od_filterObject:(BOOL (^)(id, id, BOOL *))predicate {
     if (!predicate) return nil;
     return self[[self keysOfEntriesPassingTest:predicate].anyObject];
+}
+
+- (NSArray *)od_filterValidObjects {
+    return [self od_filterObjects:^BOOL(id key, id obj, BOOL *stop) {
+        return ![obj isEqual:[NSNull null]];
+    }];
 }
 
 - (NSDictionary *)od_mapObjects:(id (^)(id, id))predicate {
